@@ -1,0 +1,34 @@
+
+curl --header "Content-Type: application/json" --request GET http://127.0.0.1:6000/streamers
+curl --header "Content-Type: application/json" --request GET http://127.0.0.1:6000/streamers/DoktorFroid
+curl --header "Content-Type: application/json" --request POST http://127.0.0.1:6000/streamers?username=LeFrenchRestream
+curl --header "Content-Type: application/json" --request DELETE http://127.0.0.1:6000/streamers/LeFrenchRestream
+
+curl --header "Content-Type: application/json" --request POST http://127.0.0.1:6000/subscriptions/DoktorFroid
+curl --header "Content-Type: application/json" --request GET http://127.0.0.1:6000/streamers/DoktorFroid/streams
+
+curl --header "Content-Type: application/json" --request POST http://127.0.0.1:6000/subscriptions/callback -d '{
+    "subscription": {
+        "id": "f1c2a387-161a-49f9-a165-0f21d7a4e1c4",
+        "type": "stream.online",
+        "version": "1",
+        "status": "enabled",
+        "cost": 0,
+        "condition": {
+            "broadcaster_user_id": "1337"
+        },
+         "transport": {
+            "method": "webhook",
+            "callback": "https://example.com/webhooks/callback"
+        },
+        "created_at": "2019-11-16T10:11:12.123Z"
+    },
+    "event": {
+        "id": "9001",
+        "broadcaster_user_id": "58221890",
+        "broadcaster_user_login": "DoktorFroid",
+        "broadcaster_user_name": "DoktorFroid",
+        "type": "live",
+        "started_at": "2020-10-11T10:11:12.123Z"
+    }
+}'
